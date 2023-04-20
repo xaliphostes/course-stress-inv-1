@@ -1,0 +1,19 @@
+{
+    "name": "course-stress-inv-1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc --build",
+        "__serve__": "ts-node ./src",
+        "start": "node ./dist"
+    },
+    "keywords": [],
+    "author": "fmaerten@gmail.com",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^18.15.11",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    }
+} 
