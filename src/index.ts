@@ -1,13 +1,8 @@
-// =============================================
-//             Stress inversion in 2D
-//                  à l'ancienne
-// =============================================
-
 export type Stress = [number, number, number] // xx, xy, yy
 
 export type Vector = [number, number] // x, y
 
-export type Data = { 
+export type Data = {
     normal: Vector,
     type: string
 }
@@ -22,7 +17,7 @@ export type Solution = {
 
 // ---------------------------------------------
 
-function scalarProduct(v1: Vector, v2: Vector): number {
+export function dot(v1: Vector, v2: Vector): number {
     return v2[0] * v1[0] + v2[1] * v1[1]
 }
 
@@ -31,50 +26,49 @@ export function normalize(n: Vector): Vector {
     return [n[0] / l, n[1] / l]
 }
 
-function eigen(stress: Stress) {
+export function eigen(stress: Stress) {
     const a = stress[0] // xx
     const b = stress[1] // xy
     const trace = a + stress[2]
     const discri = Math.sqrt(trace ** 2 - 4 * (a * stress[2] - b * b))
-
     // Decreasing order according to the eigen values
-    const v1 = normalize([b, (trace + discri) / 2 - a])
-    const v2 = normalize([b, (trace - discri) / 2 - a])
-    return { v1, v2 }
+    return {
+        v1: normalize([b, (trace + discri) / 2 - a]),
+        v2: normalize([b, (trace - discri) / 2 - a])
+    }
 }
 
-function costJoint(normal: Vector, stress: Stress): number {
+export function costJoint(normal: Vector, stress: Stress): number {
     const { v1, v2 } = eigen(stress)
-    const dot = scalarProduct(v1, normal)
-    return Math.acos(Math.abs(dot)) / Math.PI
+    const d = dot(v1, normal)
+    return Math.acos(Math.abs(d)) / Math.PI
 }
 
-function costStylolite(normal: Vector, stress: Stress): number {
+export function costStylolite(normal: Vector, stress: Stress): number {
     const { v1, v2 } = eigen(stress)
-    const dot = scalarProduct(v2, normal)
-    return Math.acos(Math.abs(dot)) / Math.PI
+    const d = dot(v2, normal)
+    return Math.acos(Math.abs(d)) / Math.PI
 }
 
-function randomStress() {
+export function randomStress() {
     const theta = Math.random() * Math.PI
-    const S1 = Math.random()
-    const S2 = Math.random()
+    const k = Math.random()
     const c = Math.cos(theta)
     const s = Math.sin(theta)
 
     return {
         stress: [
-            S1 * c ** 2 + S2 * s ** 2,
-            (S2 - S1) * c * s,
-            S1 * s ** 2 + S2 * c ** 2
+            c ** 2 + k * s ** 2, // σxx = cos(θ)² + k.sin(θ)²
+            (k - 1) * c * s,     // σxy = (k-1).cos(θ).sin(θ)
+            s ** 2 + k * c ** 2, // σyy = sin(θ)² + k.cos(θ)²
         ] as Stress,
-        S1,
-        S2,
+        S1: 1,
+        S2: k,
         theta: theta * 180 / Math.PI
     }
 }
 
-function displaySolution(s: Solution): void {
+export function displaySolution(s: Solution): void {
     console.log('Iter ', s.iteration)
     console.log('S1   ', s.S1.toFixed(3))
     console.log('S2   ', s.S2.toFixed(3))

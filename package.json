@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc --build",
-        "__serve__": "ts-node ./src",
-        "start": "node ./dist"
+        "run": "node example/script.js",
+        "doc": "typedoc src/ --excludePrivate --disableSources -name 'Stress inversion 1 API' --out dist/docs --includeVersion --hideGenerator"
     },
     "keywords": [],
     "author": "fmaerten@gmail.com",
@@ -14,6 +14,7 @@
     "devDependencies": {
         "@types/node": "^18.15.11",
         "ts-node": "^10.9.1",
+        "typedoc": "^0.24.4",
         "typescript": "^5.0.4"
     }
-} 
+}
