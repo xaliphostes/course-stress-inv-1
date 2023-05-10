@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="dist/index.js"></script>
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="log"></div>
+    <div>
+        <a href="https://github.com/xaliphostes/course-stress-inv-1/blob/main/src/index.ts">Source</a>
+    </div>
+    <script>
+        // Redirect the console.log message in the html page
+        (function () {
+            if (!console) {
+                console = {}
+            }
+            const old = console.log
+            const logger = document.getElementById('log')
+            console.log = function (message) {
+                if (typeof message == 'object') {
+                    logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : String(message)) + '<br />'
+                } else {
+                    logger.innerHTML += message + '<br />'
+                }
+            }
+        })()
+    </script>
+    <script>
+        function generateNormal() {
+            return normalize([Math.random(), Math.random()])
+        }
+
+        const datas = []
+
+        for (let i = 0; i < 30; ++i) {
+            datas.push({ normal: generateNormal(), type: 'Joint' })
+            datas.push({ normal: generateNormal(), type: 'Stylolite' })
+        }
+
+        monteCarlo(datas, 10000)
+    </script>
+
+</body>
+
+</html>

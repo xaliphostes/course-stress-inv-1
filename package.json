@@ -6,6 +6,7 @@
     "scripts": {
         "build": "tsc --build",
         "run": "node example/script.js",
+        "serve": "http-server . -p 88 -o index.html",
         "doc": "typedoc src/ --excludePrivate --disableSources -name 'Stress inversion 1 API' --out dist/docs --includeVersion --hideGenerator"
     },
     "keywords": [],

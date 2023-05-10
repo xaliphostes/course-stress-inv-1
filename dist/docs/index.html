@@ -1,0 +1,130 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Stress inversion 1 API - v1.0.0</title><meta name="description" content="Documentation for Stress inversion 1 API"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Stress inversion 1 API - v1.0.0</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h2>Stress inversion 1 API - v1.0.0</h2></div>
+<div class="tsd-panel tsd-typography"><a id="md:stress-inversion-using-some-functions" class="tsd-anchor"></a><h1><a href="#$stress-inversion-using-some-functions" style="color:inherit;text-decoration:none">Stress inversion using some functions</a></h1><ul>
+<li>No OOP</li>
+<li>Only ~100 lines of code</li>
+<li>Uses joints and stylolites</li>
+</ul>
+<a id="md:introduction" class="tsd-anchor"></a><h1><a href="#$introduction" style="color:inherit;text-decoration:none">Introduction</a></h1><p><em><strong>Write a code which allows you to perform tectonic stress inversion using fracture data such as joints and stylolites.</strong></em></p>
+<p>Even if the idea seems to be apparently <code>complicated</code>, it is not!</p>
+<br>
+This course will learn you several concepts and potential related problems. Its main goal is not to show you how to perform stress inversion, but rather why using an `old school` programming paradigm, it is hard to extend such a code without modifying the main procedure and therefore by introducing potential bugs.
+
+<p>This course is based on <code>procedural programming</code> (excerpt from WikiPedia):</p>
+<pre><code class="language-text">Procedural programming is a programming paradigm, derived from imperative programming, based on the concept of the procedure call. Procedures (a type of routine or subroutine) simply contain a series of computational steps to be carried out. Any given procedure might be called at any point during a program&#39;s execution, including by other procedures or itself. The first major procedural programming languages appeared circa 1957–1964, including Fortran, ALGOL, COBOL, PL/I and BASIC.Pascal and C were published circa 1970–1972.
+</code></pre>
+<p>Even if we are going to use the notion of <code>types</code>, you will see that we are stuck in calls of <code>functions</code> without the possibility to extend the code with no modification (which is <code>not a so good idea</code> when writting a numerical code).</p>
+<a id="md:programming-language" class="tsd-anchor"></a><h1><a href="#$programming-language" style="color:inherit;text-decoration:none">Programming language</a></h1><p>Among the multiple programming languages, our choice could have been either <code>Python</code> (very popular and simple) or <code>JavaScript</code> (the language of teh web). But we choose the <code>TypeScript</code> language, a superset of <code>JavaScript</code>. According to Wikipedia:</p>
+<pre><code class="language-text">TypeScript is a free and open source high-level programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language. It is designed for the development of large applications and transpiles to JavaScript.As it is a superset of JavaScript, existing JavaScript programs are also valid TypeScript programs.
+
+TypeScript may be used to develop JavaScript applications for both client-side and server-side execution (as with Node.js or Deno). Multiple options are available for transpilation. The default TypeScript Compiler can be used,or the Babel compiler can be invoked to convert TypeScript to JavaScript.
+
+TypeScript supports definition files that can contain type information of existing JavaScript libraries, much like C++ header files can describe the structure of existing object files. This enables other programs to use the values defined in the files as if they were statically typed TypeScript entities. There are third-party header files for popular libraries such as jQuery, MongoDB, and D3.js. TypeScript headers for the Node.js library modules are also available, allowing development of Node.js programs within TypeScript.
+
+The TypeScript compiler is itself written in TypeScript and compiled to JavaScript. It is licensed under the Apache License 2.0. Anders Hejlsberg, lead architect of C# and creator of Delphi and Turbo Pascal, has worked on the development of TypeScript.
+</code></pre>
+<a id="md:programming-paradigm" class="tsd-anchor"></a><h1><a href="#$programming-paradigm" style="color:inherit;text-decoration:none">Programming paradigm</a></h1><a id="md:imperative" class="tsd-anchor"></a><h2><a href="#$imperative" style="color:inherit;text-decoration:none">Imperative</a></h2><p>The programmer instructs the machine how to change its state</p>
+<a id="md:procedural" class="tsd-anchor"></a><h3><a href="#$procedural" style="color:inherit;text-decoration:none">Procedural</a></h3><p>Procedures (a type of routine or subroutine) simply contain a series of computational steps to be carried out. Any given procedure might be called at any point during a program&#39;s execution, including by other procedures or itself. Examples are Fortran, ALGOL, COBOL, BASIC, Pascal and C</p>
+<a id="md:object-oriented" class="tsd-anchor"></a><h3><a href="#$object-oriented" style="color:inherit;text-decoration:none">Object oriented</a></h3><p>Based on the concept of &quot;objects&quot;, which can contain data and code. Notions of inheritance, polymorphism, encapsulation are introduced. Examples are Java, Python, C++, C#...
+Some have been extended with some OO features: JavaScriptVB, Matlab, Fortran 2003</p>
+<a id="md:declarative" class="tsd-anchor"></a><h2><a href="#$declarative" style="color:inherit;text-decoration:none">Declarative</a></h2><a id="md:functional" class="tsd-anchor"></a><h3><a href="#$functional" style="color:inherit;text-decoration:none">Functional</a></h3><a id="md:reactive" class="tsd-anchor"></a><h3><a href="#$reactive" style="color:inherit;text-decoration:none">Reactive</a></h3><a id="md:software-architecture" class="tsd-anchor"></a><h1><a href="#$software-architecture" style="color:inherit;text-decoration:none">Software Architecture</a></h1><a id="md:design-pattern" class="tsd-anchor"></a><h1><a href="#$design-pattern" style="color:inherit;text-decoration:none">Design pattern</a></h1><p>A design pattern is the re-usable form of a solution to a design problem. In software engineering, a <a href="https://en.wikipedia.org/wiki/Software_design_pattern">software design pattern</a> is a general, reusable solution to a commonly occurring problem within a given context in software design. They are classified in categories such as <a href="https://en.wikipedia.org/wiki/Creational_pattern">creational</a>, <a href="https://en.wikipedia.org/wiki/Structural_pattern">structural</a>, <a href="https://en.wikipedia.org/wiki/Behavioral_pattern">Behavioral</a> or <a href="https://en.wikipedia.org/wiki/Concurrency_pattern">Concurrency</a>. Examples of design patterns that can be used in our project are:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Factory_method_pattern">Factory method</a>: see a relative complexe example <a href="https://replit.com/@xaliphostes/Cpp-Factory">here</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Singleton_pattern">Singleton</a>: see an example <a href="https://replit.com/@xaliphostes/Singleton-typescript#index.ts">here</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Thread_pool_pattern">Thread pool</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor</a>: see an example <a href="https://replit.com/@xaliphostes/visitor-pattern#index.ts">here</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Iterator_pattern">Iterator</a></li>
+</ul>
+<a id="md:testing" class="tsd-anchor"></a><h1><a href="#$testing" style="color:inherit;text-decoration:none">Testing</a></h1><a id="md:stress-inversion" class="tsd-anchor"></a><h1><a href="#$stress-inversion" style="color:inherit;text-decoration:none">Stress inversion</a></h1><p>Stress inversion is a numerical technique to inverse for the far field stress given some observations such as teh striation on fault planes, fractures around active faults, deformation (GPS, Insar), focal mechanisms...</p>
+<p>The history of stress inversion can be decomosed into three parts:</p>
+<ul>
+<li>Approach 1: Anderson&#39;s inversions for tectonic stress regimes</li>
+<li>Approach 2: inversions with earthquake data and based of the hypothesis of Wallace and Bott. Methodologies are then derived from Carey and Brunier, 1974; Etchecopar et al., 1981; Angelier et al., 1982;
+Angelier, 1984; Michael, 1987; Reches, 1987; Gephart, 1990; Cornet,
+1993; Fry, 1999; Shan et al., 2006; Célérier et al., 2012...</li>
+<li>Approach 3: mechanical inversions. See, e.g., Maerten, F., 2010; Kaven et al., 2011; Maerten et al., 2016(a); Maerten et al., 2016(b)...</li>
+</ul>
+<p>This history is summarized in</p>
+<pre><code class="language-text">Maerten, F., Madden, E.H., Pollard, D.D. and Maerten, L., 2016. Incorporating fault mechanics into inversions of aftershock data for the regional remote stress, with application to the 1992 Landers, California earthquake. Tectonophysics, 674, pp.52-64.
+</code></pre>
+<p>We are going to implement a 2D version of a stress inversion technique, and the program will be organized as follow:</p>
+<ol>
+<li>Define a cost function for any data, that is to say, define a mathematical function which estimate the fit of a data (for example, given by a normal of a joint) to the current stress state by mean of the principal directions.</li>
+<li>Define a way of finding the best solution of the stress state using the cost function(s).</li>
+<li>Display the solution</li>
+<li>Optionally, compute the <code>domain</code> of the model</li>
+</ol>
+<a id="md:cost-function" class="tsd-anchor"></a><h2><a href="#$cost-function" style="color:inherit;text-decoration:none">Cost function</a></h2><a id="md:inversion-and-display-the-solution" class="tsd-anchor"></a><h2><a href="#$inversion-and-display-the-solution" style="color:inherit;text-decoration:none">Inversion and display the solution</a></h2><a id="md:model-domain" class="tsd-anchor"></a><h2><a href="#$model-domain" style="color:inherit;text-decoration:none">Model domain</a></h2></div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li>
+<ul>
+<li><a href="#md:stress-inversion-using-some-functions"><span>Stress inversion using some functions</span></a></li>
+<li><a href="#md:introduction"><span>Introduction</span></a></li>
+<li><a href="#md:programming-language"><span>Programming language</span></a></li>
+<li><a href="#md:programming-paradigm"><span>Programming paradigm</span></a></li>
+<li>
+<ul>
+<li><a href="#md:imperative"><span>Imperative</span></a></li>
+<li>
+<ul>
+<li><a href="#md:procedural"><span>Procedural</span></a></li>
+<li><a href="#md:object-oriented"><span>Object oriented</span></a></li></ul></li>
+<li><a href="#md:declarative"><span>Declarative</span></a></li>
+<li>
+<ul>
+<li><a href="#md:functional"><span>Functional</span></a></li>
+<li><a href="#md:reactive"><span>Reactive</span></a></li></ul></li></ul></li>
+<li><a href="#md:software-architecture"><span>Software <wbr/>Architecture</span></a></li>
+<li><a href="#md:design-pattern"><span>Design pattern</span></a></li>
+<li><a href="#md:testing"><span>Testing</span></a></li>
+<li><a href="#md:stress-inversion"><span>Stress inversion</span></a></li>
+<li>
+<ul>
+<li><a href="#md:cost-function"><span>Cost function</span></a></li>
+<li><a href="#md:inversion-and-display-the-solution"><span>Inversion and display the solution</span></a></li>
+<li><a href="#md:model-domain"><span>Model domain</span></a></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4-path"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)" id="icon-4-text"></path></svg><span>Stress inversion 1 API -<wbr/> v1.0.0</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="types/Data.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg><span>Data</span></a></li>
+<li><a href="types/Solution.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Solution</span></a></li>
+<li><a href="types/Stress.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Stress</span></a></li>
+<li><a href="types/Vector.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Vector</span></a></li>
+<li><a href="functions/costJoint.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg><span>cost<wbr/>Joint</span></a></li>
+<li><a href="functions/costStylolite.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>cost<wbr/>Stylolite</span></a></li>
+<li><a href="functions/displaySolution.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>display<wbr/>Solution</span></a></li>
+<li><a href="functions/dot.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>dot</span></a></li>
+<li><a href="functions/eigen.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>eigen</span></a></li>
+<li><a href="functions/monteCarlo.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>monte<wbr/>Carlo</span></a></li>
+<li><a href="functions/normalize.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>normalize</span></a></li>
+<li><a href="functions/randomStress.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>random<wbr/>Stress</span></a></li></ul></nav></div></div></div>
+<div class="overlay"></div></body></html>
